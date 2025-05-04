@@ -13,5 +13,5 @@ Start the development server:
 
 ```bash
 # npm
-npm run dev
+npm run serve
 ```
