@@ -3,3 +3,5 @@ export enum TaskStatus {
 	IN_PROGRESS = 'in-progress',
 	DONE = 'done',
 }
+
+export const SIDEBAR_WIDTH = '72px';

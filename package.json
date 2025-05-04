@@ -12,6 +12,7 @@
 		"format": "prettier --write src/"
 	},
 	"dependencies": {
+		"@types/sortablejs": "^1.15.8",
 		"pinia": "^3.0.2",
 		"sass": "^1.69.5",
 		"vue": "^3.3.4",

@@ -35,6 +35,7 @@
 	import SettingsLapis from '../assets/icons/Settings, Lapis.svg';
 	import TasksWhite from '../assets/icons/Tasks, White.svg';
 	import TasksLapis from '../assets/icons/Tasks, Lapis.svg';
+	import { SIDEBAR_WIDTH } from '@/constants/constants';
 
 	const sidebarItems = [
 		{
@@ -77,7 +78,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 48px;
-		min-width: 72px;
+		min-width: v-bind(SIDEBAR_WIDTH);
 		height: 100vh;
 		padding-top: 48px;
 		background-color: $color-lapis;

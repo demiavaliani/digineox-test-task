@@ -8,6 +8,9 @@
 			group="tasks"
 			itemKey="id"
 			animation="200"
+			empty-insert-threshold="50"
+			@add="draggedToList"
+			:data-status="tasksList[0] ? tasksList[0].status : ''"
 		>
 			<template #item="{ element, index }">
 				<TaskCard
@@ -26,6 +29,11 @@
 	import draggable from 'vuedraggable';
 	import TaskCard from './TaskCard.vue';
 	import type { Task } from '@/types/TasksType';
+	import type { SortableEvent } from 'sortablejs';
+
+	const emits = defineEmits<{
+		(ev: 'draggedToList', payload: string): void;
+	}>();
 
 	const props = defineProps<{
 		statusHeader: string;
@@ -34,6 +42,12 @@
 
 	// for the sake of draggable, we need to access the tasks list as a ref instead of a prop
 	const tasks = ref(props.tasksList);
+
+	const draggedToList = (ev: SortableEvent) => {
+		// emit name of the exact list where the item was dropped
+		// need for DialogCard to display the correct list
+		emits('draggedToList', ev.to.dataset.status || '');
+	};
 </script>
 
 <style lang="scss">
