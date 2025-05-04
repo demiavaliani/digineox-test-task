@@ -1,11 +1,23 @@
 <template>
-	<h1>Tasks</h1>
+	<div class="tasks">
+		<h1>TASKS</h1>
+
+		<div class="tasks__wrapper">
+			<TaskGroupWrapper :status-header="TaskStatus.TODO" />
+
+			<TaskGroupWrapper :status-header="TaskStatus.IN_PROGRESS" />
+
+			<TaskGroupWrapper :status-header="TaskStatus.DONE" />
+		</div>
+	</div>
 </template>
 
 <script setup lang="ts">
 	import { onMounted, ref } from 'vue';
 	import { useTasksStore } from '@/stores/tasks';
 	import { storeToRefs } from 'pinia';
+	import { TaskGroupWrapper } from '@/components';
+	import { TaskStatus } from '@/constants/constants';
 
 	const { tasksList } = storeToRefs(useTasksStore());
 
@@ -22,3 +34,15 @@
 		}
 	});
 </script>
+
+<style lang="scss">
+	.tasks {
+		padding: 48px;
+
+		&__wrapper {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			gap: 36px;
+		}
+	}
+</style>
