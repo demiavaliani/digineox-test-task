@@ -24,7 +24,8 @@ body {
 #app {
 	display: flex;
 	width: 100%;
-	height: 100vh;
+	height: fit-content;
+	min-height: 100vh;
 }
 
 p,
@@ -42,6 +43,20 @@ button {
 	background: none;
 	cursor: pointer;
 	font: inherit;
+}
+
+h1 {
+	margin: 0 0 48px 0;
+	font-size: 32px;
+	font-weight: $fw-medium;
+	color: $color-black;
+}
+
+h2 {
+	margin: 0;
+	font-size: 24px;
+	font-weight: $fw-regular;
+	color: $color-black;
 }
 
 .router-link-active {
