@@ -41,5 +41,19 @@
 			flex-direction: column;
 			gap: 24px;
 		}
+
+		@media screen and (orientation: portrait) {
+			padding: 36px;
+
+			&__header {
+				margin-bottom: 24px;
+			}
+
+			&__wrapper {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+				gap: 16px;
+			}
+		}
 	}
 </style>

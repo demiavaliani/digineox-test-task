@@ -37,12 +37,18 @@
 
 <style lang="scss">
 	.tasks {
+		overflow-y: auto;
+		width: 100%;
 		padding: 48px;
 
 		&__wrapper {
 			display: grid;
 			grid-template-columns: 1fr 1fr 1fr;
 			gap: 36px;
+
+			@media screen and (orientation: portrait) {
+				grid-template-columns: 1fr;
+			}
 		}
 	}
 </style>

@@ -22,6 +22,13 @@
 		background-color: v-bind('props.color');
 		color: $color-black;
 
+		@media screen and (orientation: portrait) {
+			display: flex;
+			align-items: center;
+			padding: 31px 12px;
+			aspect-ratio: 1 / 1;
+		}
+
 		&:hover {
 			filter: drop-shadow($shadow-card);
 		}
