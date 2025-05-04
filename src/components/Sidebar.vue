@@ -78,11 +78,16 @@
 		display: flex;
 		flex-direction: column;
 		gap: 48px;
+		// width for initial width
+		width: v-bind(SIDEBAR_WIDTH);
+		// min-width for exact width
 		min-width: v-bind(SIDEBAR_WIDTH);
 		height: 100vh;
 		padding-top: 48px;
 		background-color: $color-lapis;
-		transition: width 0.3s;
+		transition:
+			width 0.3s,
+			min-width 0.3s;
 
 		&__item {
 			display: flex;
@@ -108,6 +113,7 @@
 		}
 
 		&--open {
+			width: 240px;
 			min-width: 240px;
 		}
 	}
