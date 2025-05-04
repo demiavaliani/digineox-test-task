@@ -1,9 +1,9 @@
 <template>
+	<Sidebar />
+
 	<RouterView />
 </template>
 
 <script setup lang="ts">
-	import { RouterView } from 'vue-router';
+	import { Sidebar } from './components';
 </script>
-
-<style lang="scss"></style>
