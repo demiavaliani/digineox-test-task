@@ -1,29 +1,39 @@
 <template>
 	<div class="task-group">
-		<h2 class="task-group__header">{{ statusHeader }}</h2>
+		<h2 class="task-group__header">{{ statusHeader.toUpperCase() }}</h2>
 
-		<div class="task-group__wrapper">
-			<TaskCard
-				v-for="task in tasksList"
-				:title="task.title"
-				:color="task.color"
-				:status="task.status"
-				:key="task.title"
-			/>
-		</div>
+		<draggable
+			class="task-group__wrapper"
+			:list="tasks"
+			group="tasks"
+			itemKey="id"
+			animation="200"
+		>
+			<template #item="{ element, index }">
+				<TaskCard
+					:title="element.title"
+					:color="element.color"
+					:status="element.status"
+					:key="element.title"
+				/>
+			</template>
+		</draggable>
 	</div>
 </template>
 
 <script setup lang="ts">
-	import { useTasksStore } from '@/stores/tasks';
-	import { storeToRefs } from 'pinia';
+	import { ref } from 'vue';
+	import draggable from 'vuedraggable';
 	import TaskCard from './TaskCard.vue';
+	import type { Task } from '@/types/TasksType';
 
-	defineProps<{
+	const props = defineProps<{
 		statusHeader: string;
+		tasksList: Array<Task>;
 	}>();
 
-	const { tasksList } = storeToRefs(useTasksStore());
+	// for the sake of draggable, we need to access the tasks list as a ref instead of a prop
+	const tasks = ref(props.tasksList);
 </script>
 
 <style lang="scss">
@@ -51,7 +61,8 @@
 
 			&__wrapper {
 				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+				// grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+				grid-template-columns: repeat(auto-fit, 148px);
 				gap: 16px;
 			}
 		}

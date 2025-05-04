@@ -3,23 +3,50 @@
 		<h1>TASKS</h1>
 
 		<div class="tasks__wrapper">
-			<TaskGroupWrapper :status-header="TaskStatus.TODO" />
+			<TaskGroupWrapper
+				:status-header="TaskStatus.TODO"
+				:tasks-list="tasksToDo"
+			/>
 
-			<TaskGroupWrapper :status-header="TaskStatus.IN_PROGRESS" />
+			<TaskGroupWrapper
+				:status-header="TaskStatus.IN_PROGRESS"
+				:tasks-list="tasksInProgress"
+			/>
 
-			<TaskGroupWrapper :status-header="TaskStatus.DONE" />
+			<TaskGroupWrapper
+				:status-header="TaskStatus.DONE"
+				:tasks-list="tasksDone"
+			/>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-	import { onMounted, ref } from 'vue';
+	import { computed, onMounted } from 'vue';
 	import { useTasksStore } from '@/stores/tasks';
 	import { storeToRefs } from 'pinia';
 	import { TaskGroupWrapper } from '@/components';
 	import { TaskStatus } from '@/constants/constants';
 
 	const { tasksList } = storeToRefs(useTasksStore());
+
+	const tasksToDo = computed(() => {
+		return tasksList.value
+			? tasksList.value.filter((task) => task.status === TaskStatus.TODO)
+			: [];
+	});
+
+	const tasksInProgress = computed(() => {
+		return tasksList.value
+			? tasksList.value.filter((task) => task.status === TaskStatus.IN_PROGRESS)
+			: [];
+	});
+
+	const tasksDone = computed(() => {
+		return tasksList.value
+			? tasksList.value.filter((task) => task.status === TaskStatus.DONE)
+			: [];
+	});
 
 	const fetchTasks = async () => {
 		const response = await fetch(

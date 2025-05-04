@@ -1,6 +1,6 @@
 <template>
 	<div class="task-card">
-		{{ title }}
+		{{ title.toUpperCase() }}
 	</div>
 </template>
 
